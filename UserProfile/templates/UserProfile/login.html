@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>用户登录</title>
+{% endblock %}
+
+    {% block content %}
+    <div class="container">
+
+        <div class="container-fluid" style="margin-top: 30px">
+            <div class="row-fluid">
+                <div class="well" style="width: 320px; margin-left: auto; margin-right: auto">
+                    <div class="row-fluid">
+                        <div>
+                            <h3 style="margin: 0 0 20px;">用户登录</h3>
+                        </div>
+                    </div><!-- /row fluid -->
+        
+                    <div class="row-fluid">
+                        <div>
+                            <form action="{% url 'UserProfile:login' %}" role="form" method="post">
+                                {% csrf_token %}
+                                <div id="div_id_username"
+                                    class="clearfix control-group {% if form.username.errors %}error{% endif %}">
+                                    <div class="form-group">
+                                        <label for="id_username">用户名:</label>
+                                        <input type="text" name="username" maxlength="100"
+                                            autocapitalize="off"
+                                            autocorrect="off" class="form-control textinput textInput"
+                                            id="id_username" required
+                                            {% if form.username.value %}value="{{ form.username.value }}"{% endif %}>
+                                        {% if form.username.errors %}
+                                            <p class="text-error">
+                                                不正确的用户名
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                    <div id="div_id_password"
+                                        class="clearfix control-group {% if form.password.errors %}error{% endif %}">
+                                        <div class="form-group">
+                                        <label for="id_password">密 码:</label>
+                                        <input type="password" name="password" maxlength="100"
+                                            autocapitalize="off" autocorrect="off" class="form-control textinput textInput"
+                                            id="id_password" required>
+                                        {% if form.password.errors %}
+                                            <p class="text-error">
+                                                不正确的用户名或密码
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <input type="hidden" name="next" value="{{ next }}" />
+                                {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="well well-small text-error" style="border: none">请输入正确的用户名和密码</div>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="form-actions-no-box">
+                                    <input type="submit" name="submit" value="登录" class="btn btn-primary form-control" id="submit-id-submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- /.row-fluid -->
+                </div><!--/.well-->
+            </div><!-- /.row-fluid -->
+        </div><!-- /.container-fluid -->
+    </div>
+    {% endblock %}
