@@ -1,4 +1,4 @@
-/*全局*/
+﻿/*全局*/
 html { overflow-x:hidden; }
 body { font-size:14px; }
 body {  margin:0; padding:0; color:#404040; font-family:"微软雅黑","宋体"; line-height:22px;  }
@@ -450,3 +450,6 @@ itor-box .tool li span.annex { background-position:-41px 0; }
 /*网上问医修改*/
 .w620 { width:620px; }
 .w630 { width:630px; }
+
+/*用户详细信息界面*/
+i { margin-right:10px;margin-left:20px }

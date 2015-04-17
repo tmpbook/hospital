@@ -15,5 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^routers/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^UserProfile/', include('UserProfile.urls', namespace='UserProfile')),
+    url(r'^users/', include('UserProfile.urls', namespace='User')),
+    # test App
+    url(r'^test/', include('ForTest.urls', namespace='ForTest')), 
 )

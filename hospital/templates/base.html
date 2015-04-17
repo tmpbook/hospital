@@ -7,28 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    {% block title %}
+{% block title %}
     <title>
     	主页
     </title>
-    {% endblock %}
+{% endblock %}
     <!-- Bootstrap -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "Font-Awesome-3.2.1/css/font-awesome.min.css" %}" rel="stylesheet">
+{% block css %}
     <link href="{% static "css/global.css" %}" rel="stylesheet">
     <link href="{% static "css/base.css" %}" rel="stylesheet">
-
+{% endblock %}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
   </head>
+
+{% block content_body %}
   <body>
   	<header>
         <nav class="navbar navbar-default">
           <div class="container">
+          <div class="row">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -80,12 +86,13 @@
                 </li>
               </ul>-->
             </div><!-- /.navbar-collapse -->
+          </div><!-- /.row -->
           </div><!-- /.container-fluid -->
         </nav>
     </header>
-{% block content_body %}
 <div class="container">
   <div class="row">
+  <div class="col-md-12">
 	<div class="nav f-yahei relative  f14">
 	 <ul class="fl f18 l">
 	 <li><a href="/" title="首页" class="PublicMenu on">首页</a></li>
@@ -102,13 +109,15 @@
 	 </ul>
 	   <div id="botlink" class="bot-link absolute bot-w1"></div>
 	 {% if user.is_authenticated %}
-       <div class="fr value"><a href="{% url 'UserProfile:logout' %}">注销</a></div>
+       <div class="fr"><a href="{% url 'User:logout' %}"><i class="icon-signout"></i></a></div>
+       <div class="fr value"><a href="{% url 'User:profile' slug=user.username %}">用户中心</a></div>
      {% else %}
-       <div class="fr value"><a href="{% url 'UserProfile:login' %}">登录</a></div>
+       <div class="fr value"><a href="{% url 'User:login' %}">登录</a></div>
+       <div class="fr value"><a href="{% url 'User:register' %}">注册</a></div>
      {% endif %}
-	   <div class="fr app"><a href="">手机客户端</a></div>
 	</div>
-  </div>
+  </div><!--end col-md-12-->
+  </div><!--end row-->
 </div><!--end container-->
 
 <div class="h20"></div>
@@ -127,7 +136,7 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="" src="{{ STATIC_URL }}img/1.jpg" />
+						<img alt="" src="{% static "img/3.jpg" %}" />
 						<div class="carousel-caption">
 							<h4>
 								First Thumbnail label
@@ -138,7 +147,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="{{ STATIC_URL }}img/2.jpg" />
+						<img alt="" src="{% static "img/1.jpg" %}" />
 						<div class="carousel-caption">
 							<h4>
 								Second Thumbnail label
@@ -149,7 +158,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="{{ STATIC_URL }}img/3.jpg" />
+						<img alt="" src="{% static "img/2.jpg" %}" />
 						<div class="carousel-caption">
 							<h4>
 								Third Thumbnail label
@@ -229,13 +238,12 @@
 </div>
 
 {% endblock %}
-{% endblock %}
-<div class="footer " id="footer"> 
+<div class="footer" id="footer"> 
     <div class="h20"></div>
-  <div class="w980 t-cen cr-666 lh18 pb10" style=" border-bottom:1px solid #e5e5e5"><b>郑重提醒：</b>网上交流不能替代医生面诊，医生的咨询建议仅供参考，具体诊疗请一定到正规医院在专业医生指导下进行！医生言论仅代表其个人观点，不代表本站同意其说法，本站不承担由此引起的法律责任。
-</div>
-    <div class=" w980 ">
-        <div class="pt20">
+    <div class="w980 t-cen cr-666 lh18 pb10" style=" border-bottom:1px solid #e5e5e5"><b>郑重提醒：</b>网上交流不能替代医生面诊，医生的咨询建议仅供参考，具体诊疗请一定到正规医院在专业医生指导下进行！医生言论仅代表其个人观点，不代表本站同意其说法，本站不承担由此引起的法律责任。
+    </div>
+    <div>
+        <div>
             <a href="" target="_blank">关于我们</a><span class="cr-c8 mlr10">|</span>
             <a href="" target="_blank">领导关怀</a><span class="cr-c8 mlr10">|</span>
             <a href="" target="_blank">联系我们</a><span class="cr-c8 mlr10">|</span>
@@ -263,5 +271,8 @@
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
   {% block script %}
   {% endblock %}
+
+
   </body>
+  {% endblock %}<!--/end block content_body-->
 </html>

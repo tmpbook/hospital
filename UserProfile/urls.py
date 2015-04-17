@@ -1,6 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required as auth
 from django.contrib.auth.views import logout_then_login
+from .views import UserDetailView
+from .views import UserCreateView
+from .views import UserUpdateView
+
 urlpatterns = patterns('',
     # Examples:
     #url(r'^profiles$', HomePageView.as_view(), name='home'),
@@ -8,4 +12,7 @@ urlpatterns = patterns('',
         {"template_name": "UserProfile/login.html"}, name='login'),
     url(r'logout/$', "django.contrib.auth.views.logout_then_login",
         name='logout'),
+    url(r'profile/(?P<slug>\w+)/$', auth(UserDetailView.as_view()), name='profile'),
+    url(r'register/$', UserCreateView.as_view(), name='register'),
+    url(r'update/(?P<slug>\w+)/$', UserUpdateView.as_view(), name='update'),
 )

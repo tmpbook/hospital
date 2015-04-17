@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'hospital',
     'UserProfile',
+    'ForTest'
 )
 # ++++++++++++++++++++++++++
 REST_FRAMEWORK = {
@@ -47,9 +48,9 @@ REST_FRAMEWORK = {
 }
 
 from django.core.urlresolvers import reverse_lazy
-LOGIN_URL=reverse_lazy("UserProfile:login")
+LOGIN_URL=reverse_lazy("User:login")
 LOGIN_REDIRECT_URL=reverse_lazy("home")
-LOGOUT_URL=reverse_lazy("UserProfile:logout")
+LOGOUT_URL=reverse_lazy("User:logout")
 
 # ---------------------------
 MIDDLEWARE_CLASSES = (

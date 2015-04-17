@@ -18,7 +18,7 @@
         
                     <div class="row-fluid">
                         <div>
-                            <form action="{% url 'UserProfile:login' %}" role="form" method="post">
+                            <form action="{% url 'User:login' %}" role="form" method="post">
                                 {% csrf_token %}
                                 <div id="div_id_username"
                                     class="clearfix control-group {% if form.username.errors %}error{% endif %}">
@@ -53,7 +53,7 @@
                                 <input type="hidden" name="next" value="{{ next }}" />
                                 {% if form.non_field_errors %}
                                     {% for error in form.non_field_errors %}
-                                        <div class="well well-small text-error" style="border: none">请输入正确的用户名和密码</div>
+                                        <div class="well well-small text-error" style="border: none; color: red">请输入正确的用户名和密码</div>
                                     {% endfor %}
                                 {% endif %}
                                 <div class="form-actions-no-box">
