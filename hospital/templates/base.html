@@ -102,8 +102,8 @@
 	 </ul>
 	 <div class="line fl"></div>
 	  <ul class="fl r">
-	 <li><a href="" class="PublicMenu" title="国内医院">国内医院</a></li>
-	 <li><a href="" class="PublicMenu" title="国内医生">国内医生</a></li>
+	 <li><a href="{% url 'ForTest:TestMenu' %}" class="PublicMenu" title="国内医院">测试navbar</a></li>
+	 <li><a href="{% url 'ForTest:TestPagination' %}" class="PublicMenu" title="国内医生">测试分页</a></li>
 	 <li><a href="" class="PublicMenu" title="疾病百科">疾病百科</a></li>
 	 <li><a href="" class="PublicMenu" title="公司简介">公司简介</a></li>
 	 </ul>
@@ -111,6 +111,7 @@
 	 {% if user.is_authenticated %}
        <div class="fr"><a href="{% url 'User:logout' %}"><i class="icon-signout"></i></a></div>
        <div class="fr value"><a href="{% url 'User:profile' slug=user.username %}">用户中心</a></div>
+       <div class="fr">{{ user.username }}</div>
      {% else %}
        <div class="fr value"><a href="{% url 'User:login' %}">登录</a></div>
        <div class="fr value"><a href="{% url 'User:register' %}">注册</a></div>
@@ -136,7 +137,7 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="" src="{% static "img/3.jpg" %}" />
+						<img alt="" src="{% static "img/1.jpg" %}" />
 						<div class="carousel-caption">
 							<h4>
 								First Thumbnail label
@@ -147,7 +148,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="{% static "img/1.jpg" %}" />
+						<img alt="" src="{% static "img/3.jpg" %}" />
 						<div class="carousel-caption">
 							<h4>
 								Second Thumbnail label

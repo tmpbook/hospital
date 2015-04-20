@@ -15,44 +15,60 @@
 		   <a class="list-group-item"><i class="icon-info-sign"></i>图像数量</a>
 		   <a class="list-group-item">
 		      <span class="badge">新</span>
-		      <i class="icon-info-sign"></i>24*7支持
+		      <i class="icon-user-md"></i>24*7支持
 		   </a>
 		   <a href= "#" class="list-group-item"><i class="icon-bookmark"></i>我的关注</a>
 		   <a href= "#" class="list-group-item">
-		      <span class="badge">新</span>
-		   <i class="icon-calendar"></i>日程安排
+		       <span class="badge">新</span>
+		       <i class="icon-calendar"></i>日程安排
 		   </a>
-		   <a href="#" class="list-group-item"><i class="icon-gear"></i>修改密码</a>
+		   <a href="{% url 'User:changepassword' %}" class="list-group-item"><i class="icon-gear"></i>修改密码</a>
 		</ul>
     </div>
     <div class="col-md-10">
+{% block content_right %}
     <div class="panel panel-info">
-    <div class="panel-heading">
-      <h2>{{ object.username }}'s Profile</h2>
-    </div>
-    <div class="panel-body">
-      <ul>
-		{% if object.customuser.scope %}
+	    <div class="panel-heading">
+	      <h2>{{ object.username }}'s Profile</h2>
+	    </div>
+	    <div class="panel-body">
+	      <ul>
+			{% if object.customuser.scope %}
+				<li>
+				<b>Scope:</b>
+				{{ object.customuser.scope }}<i class="icon-yen"></i>
+				</li>
+			{% endif %}
 			<li>
-			<b>scope:</b>
-			{{ object.customuser.scope }}
+			  <b>用户名:</b>
+			  {{ object.customuser.username }}
 			</li>
-		{% endif %}
-		<li>
-		  <b>用户名:</b>
-		  {{ object.customuser.username }}
-		</li>
-		<li>
-		  <b>password:</b>
-		  {{ object.customuser.password }}
-		</li>
-		{% if object.username == user.username %}
-			<a href='{% url 'User:update' slug=user.username %}'>Edit my profile</a>
-		{% endif %}
-    </div>
-    <div class="panel-footer">面板脚注</div>
-</div>
-    </div>
+			<li>
+			  <b>Password:</b>
+			  {{ object.customuser.password }}
+			</li>
+			<li>
+			  <b>Description:</b>
+			  {{ object.customuser.description }}
+			</li>
+			<li>
+			  <b>is_active:</b>
+			  {% if object.customuser.is_active %}
+			  <b style="color:green">{{ object.customuser.is_active }}</b>
+			  {% else %}
+			  <b style="color:red">{{ object.customuser.is_active }}</b>
+			  {% endif %}
+			</li>
+	
+	    </div>
+	    <div class="panel-footer">
+	    	{% if object.username == user.username %}
+			<a href='{% url 'User:update' slug=user.username %}'>编辑</a>
+			{% endif %}
+	    </div>
+	</div>
+{% endblock %}
+    </div><!--/col-md-10-->
   </div>
 </div>
 

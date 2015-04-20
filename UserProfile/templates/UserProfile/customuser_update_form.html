@@ -1,4 +1,25 @@
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" />
+{% extends 'UserProfile/user_detail.html' %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+
+{% block content_right %}
+<form action="" method="post" class="form">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary" value="Update">
+      {% bootstrap_icon "star" %} Submit
+    </button>
+  {% endbuttons %}
 </form>
+{% endblock %}
+{# Read the documentation for more information #}
