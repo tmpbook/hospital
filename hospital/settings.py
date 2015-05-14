@@ -40,7 +40,9 @@ INSTALLED_APPS = (
     'rest_framework',
     'hospital',
     'UserProfile',
-    'ForTest'
+    'ForTest',
+    'database',
+    'topquery',
 )
 # ++++++++++++++++++++++++++
 REST_FRAMEWORK = {

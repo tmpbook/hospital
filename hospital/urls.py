@@ -3,7 +3,6 @@ from hospital.views import HomePageView
 from rest_framework import routers
 from UserProfile import views
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required as auth
 admin.autodiscover()
 
 router = routers.DefaultRouter()
@@ -17,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^users/', include('UserProfile.urls', namespace='User')),
     # test App
-    url(r'^test/', include('ForTest.urls', namespace='ForTest')), 
+    url(r'^test/', include('ForTest.urls', namespace='ForTest')),
+    url(r'^learn/',include('topquery.urls',namespace='topquery')),
 )

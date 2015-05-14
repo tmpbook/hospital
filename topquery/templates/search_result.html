@@ -1,0 +1,12 @@
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if all_hospital %}
+    <p>Found {{ all_hospital|length }} hospital {{ all_hospital|pluralize }}.</p>
+    <ul>
+        {% for hospital_name in all_hospital %}
+        <a href="www.baidu.com">{{ hospital_name.hos_name }}</a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hospital matched your search criteria.</p>
+{% endif %}

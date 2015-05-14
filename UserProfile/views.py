@@ -78,14 +78,18 @@ class UserCreateView(CreateView):
         from django.contrib.auth.hashers import make_password
         f.password = make_password(f.password)
         f.save()
+        """
+        PS.或者可以
+        form.instance.password = make_password(form.instance.password)
+        """
         return super(UserCreateView, self).form_valid(form)
 
 class UserUpdateView(UpdateView):
     template_name_suffix = "_update_form"
     #model = get_user_model()
     model = CustomUser
-    print dir(CustomUser)
-    print CustomUser.get_username
+    #print dir(CustomUser)
+    #print CustomUser.get_username
     slug_field = "username"
     def get_success_url(self):
         return reverse_lazy('User:profile', kwargs={'slug': self.request.user})
